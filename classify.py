@@ -47,9 +47,11 @@ def main():
             correct_words_sentence=[]
             for i in words_with_special_char:
                 correct_word=get_word(i)
+
                 if(correct_word==None):
                     continue
                 else:
+                    correct_word = correct_word.lower()
                     correct_words_sentence.append(correct_word)
 
             feature_list={}
@@ -74,17 +76,20 @@ def main():
                     prob_message_giv_ham*=(1-prior_prob_ham[i])
 
             prob_spam_giv_message=(prob_message_giv_spam*p_spam_general)/((prob_message_giv_spam*p_spam_general)+(prob_message_giv_ham*p_ham_general))
-            #print(prob_spam_giv_message,row.v1,row.v2)
+            print(prob_spam_giv_message,row.v1,row.v2)
 
 
 
-            if prob_spam_giv_message >.75:#classify spam!
+            if prob_spam_giv_message >.90:#classify spam!
                 if(row.v1=='spam'):
                     classified_correct+=1
+                # print('spam', row.v1, row.v2)
+
 
             else:
                  if(row.v1=='ham'):
                     classified_correct+=1
+                # print('ham', row.v1, row.v2)
 
             message_count_total+=1
 
