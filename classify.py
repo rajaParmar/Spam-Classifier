@@ -5,8 +5,8 @@ from frequency import get_word
 import pandas as pd
 import pickle
 
-p_spam_general = 0.13375
-p_ham_general = 0.86625
+p_spam_general = 0.13
+p_ham_general = 0.87
 
 prior_prob_spam = pickle.load(open('pickle_out_prior_spam.pickle','rb'))
 prior_prob_ham = pickle.load(open('pickle_out_prior_ham.pickle','rb'))
@@ -38,7 +38,7 @@ def main():
     for row in df.itertuples():
         prob_message_giv_spam=1
         prob_message_giv_ham=1
-        if (count <= 4000):
+        if (count <= 3900):
             count += 1
         else:
             raw_message = row.v2
@@ -76,7 +76,7 @@ def main():
                     prob_message_giv_ham*=(1-prior_prob_ham[i])
 
             prob_spam_giv_message=(prob_message_giv_spam*p_spam_general)/((prob_message_giv_spam*p_spam_general)+(prob_message_giv_ham*p_ham_general))
-            print(prob_spam_giv_message,row.v1,row.v2)
+            #print(prob_spam_giv_message,row.v1,row.v2)
 
 
 
@@ -94,7 +94,7 @@ def main():
             message_count_total+=1
 
     accuracy=classified_correct/message_count_total
-
+    print("#words=Top 50")
     print(accuracy*100,"% Classified Correctly!!!" )
 
 main()

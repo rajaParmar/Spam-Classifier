@@ -68,13 +68,13 @@ def main():
     for row in df.itertuples():
         ham_spam_list.append(row.v1)
         tuple_count += 1
-        if (tuple_count > 4000):  # total tuples for training!
+        if (tuple_count > 3900):  # total tuples for training!
             break
 
     tuple_count = 0
     count = 0
     for row in df.itertuples():
-        if (tuple_count > 4000):
+        if (tuple_count > 3900):
             break
 
         special_characters = is_special_character_present(row.v2)

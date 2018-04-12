@@ -32,9 +32,9 @@ def main():
     new_spam_dict = {}
     new_ham_dict = {}
 
-    #print(new_spam_values, len(new_spam_values))
+    # print(new_spam_values, len(new_spam_values))
     # print(new_ham_values,len(new_ham_values))
-    temp_k = 400
+    temp_k = 50
 
     k = temp_k
     for i in new_spam_values:
@@ -63,7 +63,8 @@ def main():
         if (k <= 0):
             break
 
-    # print(new_ham_dict,len(new_ham_dict))
+    print(new_ham_dict,len(new_ham_dict))
+    print(new_spam_dict,len(new_spam_dict))
 
     pickle_out_top_k_spam_dict = open("top_400_spam_dict.pickle", 'wb')
     pickle_out_top_k_ham_dict = open("top_400_ham_dict.pickle", 'wb')
